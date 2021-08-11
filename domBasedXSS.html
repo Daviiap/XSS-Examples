@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <form action="submit">
+        <input type="text" id="input" />
+        <button id="button">ok</button>
+      </form>
+      <iframe id="iframe" sandbox="" frameborder="0"></iframe>
+    </div>
+  </body>
+
+  <script>
+    window.localStorage.setItem(
+      "session_token",
+      "a46436cbbd8617cd383e8f9436d409b25df63b31"
+    );
+
+    function removeScriptTag(text) {
+      if (hasScriptTag(text)) {
+        text = removeScriptTag(text.replace("<script>", ""));
+      }
+      // text = text.replaceAll("<script>", "");
+      return text;
+    }
+    function hasScriptTag(text) {
+      return text.indexOf("<script>") !== -1;
+    }
+
+    function handleButtonClick(event) {
+      event.preventDefault();
+      var input = document.getElementById("input");
+      // var text = input.value;
+      var text = removeScriptTag(input.value);
+      input.value = "";
+
+      var iframe = document.getElementById("iframe");
+      iframe.srcdoc = text;
+    }
+
+    var button = document.getElementById("button");
+    button.onclick = handleButtonClick;
+  </script>
+
+  <style>
+    *,
+    body {
+      padding: 0;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    iframe {
+      border: 1px solid black;
+      margin-top: 30px;
+      width: 800px;
+      height: 500px;
+    }
+
+    button {
+      border: none;
+      background-color: chartreuse;
+      width: 50px;
+      height: 30px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      cursor: pointer;
+      background-color: darkgreen;
+      color: white;
+    }
+
+    input {
+      height: 30px;
+      width: 450px;
+      padding: 3px;
+    }
+
+    #container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</html>
