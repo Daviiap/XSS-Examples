@@ -23,10 +23,10 @@
     );
 
     function removeScriptTag(text) {
-      if (hasScriptTag(text)) {
-        text = removeScriptTag(text.replace("<script>", ""));
-      }
-      // text = text.replaceAll("<script>", "");
+      // if (hasScriptTag(text)) {
+      //   text = removeScriptTag(text.replace("<script>", ""));
+      // }
+      text = text.replaceAll("<script>", "");
       return text;
     }
     function hasScriptTag(text) {
@@ -36,8 +36,8 @@
     function handleButtonClick(event) {
       event.preventDefault();
       var input = document.getElementById("input");
-      // var text = input.value;
-      var text = removeScriptTag(input.value);
+      var text = input.value;
+      // var text = removeScriptTag(input.value);
       input.value = "";
 
       var iframe = document.getElementById("iframe");
